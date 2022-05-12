@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   verify_s.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joacorre <joacorre@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/09 23:09:44 by joacorre          #+#    #+#             */
-/*   Updated: 2022/05/09 23:09:44 by joacorre         ###   ########.fr       */
+/*   Created: 2022/05/13 00:06:59 by joacorre          #+#    #+#             */
+/*   Updated: 2022/05/13 00:06:59 by joacorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include <string.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <stdarg.h>
-
-int		ft_printf(const char *format, ...);
-void	verify_c(const char *format, int *i, va_list ptr);
-void	verify_s(const char *format, int *i, va_list ptr);
-
-#endif
+void	verify_s(const char *format, int *i, va_list ptr)
+{
+	if (format[*i + 1] != 's')
+		return ;
+	ft_putstr_fd(va_arg(ptr, char *), 1);
+	*i = *i + 2;
+}
