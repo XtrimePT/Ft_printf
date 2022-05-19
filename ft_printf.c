@@ -12,41 +12,38 @@
 
 #include "ft_printf.h"
 
-void	verify_printf(const char *format, int *i, va_list ptr)
+void	verify_printf(const char *format, va_list ptr, int *str_len)
 {
-	verify_c(format, i, ptr);
-	verify_s(format, i, ptr);
-	//verify_p(format, i, ptr);
-	//verify_d(format, i, ptr);
-	//verify_i(format, i, ptr);
-	//verify_u(format, i, ptr);
-	//verify_x(format, i, ptr);
-	//verify_percentage(format, i, ptr);
+	int	i;
+
+	i = 0;
+	while (format[i] != '\0')
+	{
+		if (format[i] != '%')
+		{
+			ft_putchar_fd(format[i], 1);
+			i++;
+			*str_len = *str_len + 1;
+		}
+		else
+		{
+			verify_c(format, &i, ptr, str_len);
+			verify_s(format, &i, ptr, str_len);
+			verify_p(format, &i, ptr, str_len);
+			verify_d_i(format, &i, ptr, str_len);
+			verify_u(format, &i, ptr, str_len);
+		}
+	}
 }
 
-int ft_printf(const char *format, ...)
+int	ft_printf(const char *format, ...)
 {
-    va_list     ptr;
-    int i;
-    
-    i = 0;
-    va_start(ptr, format);
-    while (format[i] != '\0')
-    {
-        if (format[i] != '%')
-        {
-            ft_putchar_fd(format[i], 1);
-            i++;
-        }
-        else
-            verify_printf(format, &i, ptr);
-    }
-    va_end(ptr);
-    return (0);
-}
+	va_list	ptr;
+	int		str_len;
 
-int main()
-{
-    ft_printf("TEXTO PURO. AQUI VAI UM CHAR: %c\nAGORA UMA FRASE: %s", 'z', "eu amo a Rita!!!!");
-    return 0;
+	str_len = 0;
+	va_start(ptr, format);
+	verify_printf(format, ptr, &str_len);
+	va_end(ptr);
+	return (str_len);
 }
