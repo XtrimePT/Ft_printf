@@ -4,7 +4,7 @@ FLAGS = -Wall -Werror -Wextra
 
 SOURCES = $(wildcard src/*.c)
 
-OBJECTS = $(SOURCES:.c=.o)
+OBJECTS = $(wildcard *.o)
 
 
 all: $(NAME)
@@ -12,12 +12,12 @@ all: $(NAME)
 $(NAME):
 	make all clean -C libft
 	mv libft/libft.a $(NAME)
-	cc -c $(FLAGS) -Iincludes ft_printf.c $(SOURCES)
-	ar -rcs $(NAME) ft_printf.o $(OBJECTS)
+	cc -c $(FLAGS) -I includes ft_printf.c $(SOURCES)
+	ar -rcs $(NAME) $(OBJECTS)
 
 clean:
 	rm -f $(wildcard *.o)
-
+	
 fclean: clean
 	rm -f $(NAME)
 
