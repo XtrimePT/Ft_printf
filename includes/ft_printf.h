@@ -18,12 +18,19 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdarg.h>
+# include "libft.h"
 
+// Base function
 int		ft_printf(const char *format, ...);
+
+// Identifier verification functions
 void	verify_c(const char *format, int *i, va_list ptr, int *str_len);
 void	verify_s(const char *format, int *i, va_list ptr, int *str_len);
 void	verify_p(const char *format, int *i, va_list ptr, int *str_len);
 void	verify_d_i(const char *format, int *i, va_list ptr, int *str_len);
 void	verify_u(const char *format, int *i, va_list ptr, int *str_len);
+
+// Other functions
+char	*hex(unsigned long long n, char *base);
 
 #endif
