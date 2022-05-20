@@ -31,7 +31,7 @@ void	verify_printf(const char *format, va_list ptr, int *str_len)
 			verify_s(format, &i, ptr, str_len);
 			verify_p(format, &i, ptr, str_len);
 			verify_d_i(format, &i, ptr, str_len);
-			verify_u(format, &i, ptr, str_len);
+			//verify_u(format, &i, ptr, str_len);
 		}
 	}
 }

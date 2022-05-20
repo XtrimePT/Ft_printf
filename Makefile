@@ -3,20 +3,22 @@ NAME = libftprintf.a
 FLAGS = -Wall -Werror -Wextra
 
 SOURCES = $(wildcard src/*.c)
-SOURCES_LIBFT = $(wildcard libft/*.c)
 
-OBJECTS = $(SOURCES:.c=.o)
-OBJECTS_LIBFT = $(SOURCES_LIBFT:.c=.o)
+OBJECTS = $(wildcard *.o)
 
 
 all: $(NAME)
 
 $(NAME):
-	cc -c $(FLAGS) -I includes ft_printf.c $(SOURCES) $(SOURCES_LIBFT)
-	ar -rcs $(NAME) ft_printf.o $(OBJECTS) $(OBJECTS_LIBFT)
+	make all clean -C libft
+	cp libft/libft.a .
+	mv libft.a $(NAME)
+	cc -c $(FLAGS) -I. ft_printf.c $(SOURCES)
+	ar -rcs $(NAME) $(OBJECTS)
+	ranlib $(NAME)
 
 clean:
-	rm -f ft_printf.o $(OBJECTS) $(OBJECTS_LIBFT)
+	rm -f $(wildcard *.o)
 
 fclean: clean
 	rm -f $(NAME)
