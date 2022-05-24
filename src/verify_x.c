@@ -12,7 +12,7 @@
 
 #include "../ft_printf.h"
 
-void	verify_x_X(const char *format, int *i, va_list ptr, int *str_len)
+void	verify_x(const char *format, int *i, va_list ptr, int *str_len)
 {
 	char	*s;
 	int		j;
@@ -29,8 +29,7 @@ void	verify_x_X(const char *format, int *i, va_list ptr, int *str_len)
 			j++;
 		}
 	}
-	ft_putstr_fd("0x", 1);
-	//ft_putstr_fd(s, 1);
-	*str_len = *str_len + (2 + ft_strlen(s));
+	ft_putstr_fd(s, 1);
+	*str_len = *str_len + ft_strlen(s);
 	*i = *i + 2;
 }

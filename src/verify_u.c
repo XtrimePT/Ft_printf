@@ -22,5 +22,4 @@ void	verify_u(const char *format, int *i, va_list ptr, int *str_len)
 	s = ft_itoa_unsigned(va_arg(ptr, int));
 	ft_putstr_fd(s, 1);
 	*str_len = *str_len + ft_strlen(s);
-
 }

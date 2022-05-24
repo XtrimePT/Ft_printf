@@ -30,9 +30,9 @@ static char	*int_to_char_unsigned(int char_count, unsigned int n)
 	char	*ptr;
 
 	ptr = malloc(char_count + 1 * sizeof(char));
-	if(!ptr)
+	if (!ptr)
 		return (NULL);
-	while(char_count - 1 >= 0)
+	while (char_count - 1 >= 0)
 	{
 		ptr[char_count - 1] = (n % 10) + 48;
 		n /= 10;
@@ -45,7 +45,7 @@ char	*ft_itoa_unsigned(unsigned int n)
 {
 	char	*ptr;
 
-	if(!n)
+	if (!n)
 		return (NULL);
 	ptr = int_to_char_unsigned(fn_char_count_unsigned(n), n);
 	return (ptr);

@@ -21,16 +21,16 @@
 # include "libft/libft.h"
 
 // Base function
-int	ft_printf(const char *format, ...);
+int		ft_printf(const char *format, ...);
 
-// Identifier verification functions
+// Identifier sequence verification functions
 void	verify_percent(const char *format, int *i, int *str_len);
 void	verify_c(const char *format, int *i, va_list ptr, int *str_len);
 void	verify_s(const char *format, int *i, va_list ptr, int *str_len);
 void	verify_p(const char *format, int *i, va_list ptr, int *str_len);
 void	verify_d_i(const char *format, int *i, va_list ptr, int *str_len);
 void	verify_u(const char *format, int *i, va_list ptr, int *str_len);
-void	verify_x_X(const char *format, int *i, va_list ptr, int *str_len);
+void	verify_x(const char *format, int *i, va_list ptr, int *str_len);
 
 // Other functions
 char	*hex(unsigned long long n, char *base);
