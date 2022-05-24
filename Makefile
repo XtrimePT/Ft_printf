@@ -12,7 +12,7 @@ all: $(NAME)
 $(NAME): $(OBJECTS)
 	make all clean -C libft
 	mv libft/libft.a $(NAME)
-	gcc -c $(FLAGS) -I. $(SOURCES)
+	cc -c $(FLAGS) -I. $(SOURCES)
 	ar -rcs $(NAME) $(OBJECTS)
 	ranlib $(NAME)
 
