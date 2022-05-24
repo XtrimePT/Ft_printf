@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
 void	verify_s(const char *format, int *i, va_list ptr, int *str_len)
 {
@@ -18,8 +18,9 @@ void	verify_s(const char *format, int *i, va_list ptr, int *str_len)
 
 	if (format[*i + 1] != 's')
 		return ;
+	*i = *i + 2;
 	s = ft_strdup(va_arg(ptr, char *));
 	ft_putstr_fd(s, 1);
-	*i = *i + 2;
+
 	*str_len = *str_len + ft_strlen(s);
 }

@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   verify_c.c                                         :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joacorre <joacorre@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: joacorre <joacorre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/13 00:04:25 by joacorre          #+#    #+#             */
-/*   Updated: 2022/05/13 00:04:25 by joacorre         ###   ########.fr       */
+/*   Created: 2022/02/21 02:27:43 by joacorre          #+#    #+#             */
+/*   Updated: 2022/02/21 02:36:48 by joacorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "libft.h"
 
-void	verify_c(const char *format, int *i, va_list ptr, int *str_len)
+int	ft_toupper(int c)
 {
-	if (format[*i + 1] != 'c')
-		return ;
-	ft_putchar_fd(va_arg(ptr, int), 1);
-	*i = *i + 2;
-	*str_len = *str_len + 1;
+	if (c >= 97 && c <= 122)
+		c = c - 32;
+	return (c);
 }
+
+/*
+int main()
+{
+    printf("%c", ft_toupper('z'));
+
+    return 0;
+}*/

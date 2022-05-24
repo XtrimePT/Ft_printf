@@ -24,7 +24,6 @@ char	*ft_strdup(const char *s)
 	if (!ptr)
 		return (NULL);
 	i = 0;
-	printf("\n%s", s);
 	while (s[i] != '\0')
 	{
 		ptr[i] = s[i];

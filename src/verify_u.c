@@ -1,41 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hex.c                                              :+:      :+:    :+:   */
+/*   verify_u.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joacorre <joacorre@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/20 00:42:53 by joacorre          #+#    #+#             */
-/*   Updated: 2022/05/20 00:42:53 by joacorre         ###   ########.fr       */
+/*   Created: 2022/05/24 00:25:54 by joacorre          #+#    #+#             */
+/*   Updated: 2022/05/24 00:25:54 by joacorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-char	*hex(unsigned long long n, char *base)
+void	verify_u(const char *format, int *i, va_list ptr, int *str_len)
 {
-	int					count;
-	unsigned long long	n2;
-	char				*num;
+	char	*s;
 
-	count = 0;
-	n2 = n;
-	while (n < 15)
-	{
-		count++;
-		n = n / 16;
-	}
-	count++;
-	num = malloc(count + 1 * sizeof(char));
-	if (!num)
-		return (NULL);
-	num[0] = base[n];
-	num[count] = '\0';
-	while (count - 1 > 0)
-	{
-		num[count - 1] = base[n2 % 16];
-		n2 = n2 / 16;
-		count--;
-	}
-	return (num);
+	if (format[*i + 1] != 'u')
+		return ;
+	*i = *i + 2;
+	s = ft_itoa_unsigned(va_arg(ptr, int));
+	ft_putstr_fd(s, 1);
+	*str_len = *str_len + ft_strlen(s);
+
 }

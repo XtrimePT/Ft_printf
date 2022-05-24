@@ -1,41 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hex.c                                              :+:      :+:    :+:   */
+/*   verify_x_X.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joacorre <joacorre@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/20 00:42:53 by joacorre          #+#    #+#             */
-/*   Updated: 2022/05/20 00:42:53 by joacorre         ###   ########.fr       */
+/*   Created: 2022/05/24 00:39:42 by joacorre          #+#    #+#             */
+/*   Updated: 2022/05/24 00:39:42 by joacorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-char	*hex(unsigned long long n, char *base)
+void	verify_x_X(const char *format, int *i, va_list ptr, int *str_len)
 {
-	int					count;
-	unsigned long long	n2;
-	char				*num;
+	char	*s;
+	int		j;
 
-	count = 0;
-	n2 = n;
-	while (n < 15)
+	j = 0;
+	if (format[*i + 1] != 'x' && format[*i + 1] != 'X')
+		return ;
+	s = hex(va_arg(ptr, unsigned long long), "0123456789abcdef");
+	if (format[*i + 1] == 'X')
 	{
-		count++;
-		n = n / 16;
+		while (s[j] != '\0')
+		{
+			s[j] = ft_toupper(s[j]);
+			j++;
+		}
 	}
-	count++;
-	num = malloc(count + 1 * sizeof(char));
-	if (!num)
-		return (NULL);
-	num[0] = base[n];
-	num[count] = '\0';
-	while (count - 1 > 0)
-	{
-		num[count - 1] = base[n2 % 16];
-		n2 = n2 / 16;
-		count--;
-	}
-	return (num);
+	ft_putstr_fd("0x", 1);
+	//ft_putstr_fd(s, 1);
+	*str_len = *str_len + (2 + ft_strlen(s));
+	*i = *i + 2;
 }

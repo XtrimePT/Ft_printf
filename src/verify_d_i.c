@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
 void	verify_d_i(const char *format, int *i, va_list ptr, int *str_len)
 {
