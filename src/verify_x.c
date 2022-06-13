@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   verify_x_X.c                                       :+:      :+:    :+:   */
+/*   verify_x.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joacorre <joacorre@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/24 00:39:42 by joacorre          #+#    #+#             */
-/*   Updated: 2022/05/24 00:39:42 by joacorre         ###   ########.fr       */
+/*   Created: 2022/06/08 03:15:53 by marvin            #+#    #+#             */
+/*   Updated: 2022/06/08 03:15:53 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	verify_x(const char *format, int *i, va_list ptr, int *str_len)
 	j = 0;
 	if (format[*i + 1] != 'x' && format[*i + 1] != 'X')
 		return ;
-	s = hex(va_arg(ptr, unsigned long long), "0123456789abcdef");
+	s = hex(va_arg(ptr, int), "0123456789abcdef");
 	if (format[*i + 1] == 'X')
 	{
 		while (s[j] != '\0')
@@ -32,4 +32,5 @@ void	verify_x(const char *format, int *i, va_list ptr, int *str_len)
 	ft_putstr_fd(s, 1);
 	*str_len = *str_len + ft_strlen(s);
 	*i = *i + 2;
+	free(s);
 }

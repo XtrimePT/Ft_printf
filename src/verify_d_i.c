@@ -20,6 +20,7 @@ void	verify_d_i(const char *format, int *i, va_list ptr, int *str_len)
 		return ;
 	s = ft_itoa(va_arg(ptr, int));
 	ft_putstr_fd(s, 1);
-	*i = *i + 2;
 	*str_len = *str_len + ft_strlen(s);
+	free(s);
+	*i = *i + 2;
 }

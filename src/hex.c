@@ -12,7 +12,7 @@
 
 #include "../ft_printf.h"
 
-char	*hex(unsigned long long n, char *base)
+char	*hex(unsigned int n, char *base)
 {
 	int					count;
 	unsigned long long	n2;
@@ -20,13 +20,13 @@ char	*hex(unsigned long long n, char *base)
 
 	count = 0;
 	n2 = n;
-	while (n < 15)
+	while (n > 15)
 	{
 		count++;
 		n = n / 16;
 	}
 	count++;
-	num = malloc(count + 1 * sizeof(char));
+	num = malloc((count + 1) * sizeof(char));
 	if (!num)
 		return (NULL);
 	num[0] = base[n];

@@ -33,7 +33,8 @@ void	verify_u(const char *format, int *i, va_list ptr, int *str_len);
 void	verify_x(const char *format, int *i, va_list ptr, int *str_len);
 
 // Other functions
-char	*hex(unsigned long long n, char *base);
+char	*hex_p(unsigned long long int n, char *base);
+char	*hex(unsigned int n, char *base);
 char	*ft_itoa_unsigned(unsigned int n);
 
 #endif

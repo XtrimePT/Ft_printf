@@ -17,6 +17,8 @@ static int	fn_char_count(int n)
 	int	char_count;
 
 	char_count = 0;
+	if (n == 0)
+		return (1);
 	while (n > 0)
 	{
 		char_count++;
@@ -47,7 +49,7 @@ static char	*int_to_char(int char_count, int n, int index_stop)
 	}
 	while (char_count - 1 >= index_stop)
 	{
-		ptr[char_count - 1] = (n % 10) + 48;
+		ptr[char_count - 1] = (n % 10) + '0';
 		n /= 10;
 		char_count--;
 	}
@@ -58,8 +60,6 @@ char	*ft_itoa(int n)
 {
 	char	*ptr;
 
-	if (!n)
-		return (NULL);
 	if (n == -2147483648)
 	{
 		ptr = int_to_char(11, -2147483648, 1);
@@ -68,9 +68,13 @@ char	*ft_itoa(int n)
 	{
 		ptr = int_to_char(fn_char_count(n * -1) + 1, n, 1);
 	}
-	else
+	else if (n > 0)
 	{
 		ptr = int_to_char(fn_char_count(n), n, 0);
+	}
+	else
+	{
+		ptr = ft_strdup("0");
 	}
 	return (ptr);
 }

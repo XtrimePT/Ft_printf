@@ -12,41 +12,53 @@
 
 #include "../ft_printf.h"
 
-static int	fn_char_count_unsigned(unsigned int n)
+static int	unsigned_count(unsigned int n)
 {
-	int		char_count;
+	int	count;
 
-	char_count = 0;
+	count = 0;
 	while (n > 0)
 	{
-		char_count++;
+		count++;
 		n /= 10;
 	}
-	return (char_count);
+	return (count);
 }
 
-static char	*int_to_char_unsigned(int char_count, unsigned int n)
+static char	*int_to_char_unsigned(int char_count, unsigned int nbr)
 {
 	char	*ptr;
 
 	ptr = malloc(char_count + 1 * sizeof(char));
 	if (!ptr)
 		return (NULL);
+	ptr[char_count] = '\0';
 	while (char_count - 1 >= 0)
 	{
-		ptr[char_count - 1] = (n % 10) + 48;
-		n /= 10;
+		ptr[char_count - 1] = (nbr % 10) + 48;
+		nbr /= 10;
 		char_count--;
 	}
 	return (ptr);
 }
 
+/*static unsigned int	int_to_unsigned(long long n)
+{
+	unsigned int	n2;
+
+	if (n == -1)
+		n2 = 4294967295;
+	else if (n < -1)
+		n2 = 4294967295 - n;
+	return (n2);
+}*/
+
 char	*ft_itoa_unsigned(unsigned int n)
 {
-	char	*ptr;
+	char		*ptr;
 
 	if (!n)
 		return (NULL);
-	ptr = int_to_char_unsigned(fn_char_count_unsigned(n), n);
+	ptr = int_to_char_unsigned(unsigned_count(n), n);
 	return (ptr);
 }

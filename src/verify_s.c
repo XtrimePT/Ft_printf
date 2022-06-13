@@ -19,7 +19,17 @@ void	verify_s(const char *format, int *i, va_list ptr, int *str_len)
 	if (format[*i + 1] != 's')
 		return ;
 	*i = *i + 2;
-	s = ft_strdup(va_arg(ptr, char *));
-	ft_putstr_fd(s, 1);
-	*str_len = *str_len + ft_strlen(s);
+	s = (char *)va_arg(ptr, char *);
+	if (s == NULL)
+	{
+		ft_putstr_fd("(null)", 1);
+		*str_len = *str_len + ft_strlen("(null)");
+	}
+	else if (s[0] == '\0')
+		return ;
+	else
+	{
+		ft_putstr_fd(s, 1);
+		*str_len = *str_len + ft_strlen(s);
+	}
 }

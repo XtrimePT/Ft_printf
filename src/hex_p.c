@@ -1,36 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   verify_u.c                                         :+:      :+:    :+:   */
+/*   hex_p.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joacorre <joacorre@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/24 00:25:54 by joacorre          #+#    #+#             */
-/*   Updated: 2022/05/24 00:25:54 by joacorre         ###   ########.fr       */
+/*   Created: 2022/06/13 17:41:34 by joacorre          #+#    #+#             */
+/*   Updated: 2022/06/13 17:41:34 by joacorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-void	verify_u(const char *format, int *i, va_list ptr, int *str_len)
+char	*hex_p(unsigned long long int n, char *base)
 {
-	char				*s;
-	unsigned int		nbr;
+	int					count;
+	unsigned long long	n2;
+	char				*num;
 
-	if (format[*i + 1] != 'u')
-		return ;
-	*i = *i + 2;
-	nbr = va_arg(ptr, unsigned int);
-	if (nbr == 0)
+	count = 0;
+	n2 = n;
+	while (n > 15)
 	{
-		ft_putstr_fd("0", 1);
-		*str_len = *str_len + 1;
+		count++;
+		n = n / 16;
 	}
-	else
+	count++;
+	num = malloc((count + 1) * sizeof(char));
+	if (!num)
+		return (NULL);
+	num[0] = base[n];
+	num[count] = '\0';
+	while (count - 1 > 0)
 	{
-	s = ft_itoa_unsigned(nbr);
-	ft_putstr_fd(s, 1);
-	*str_len = *str_len + ft_strlen(s);
-	free(s);
+		num[count - 1] = base[n2 % 16];
+		n2 = n2 / 16;
+		count--;
 	}
+	return (num);
 }

@@ -14,13 +14,24 @@
 
 void	verify_p(const char *format, int *i, va_list ptr, int *str_len)
 {
-	char	*s;
+	char					*s;
+	unsigned long long int	nbr;
 
 	if (format[*i + 1] != 'p')
 		return ;
 	*i = *i + 2;
-	s = hex(va_arg(ptr, unsigned long long), "0123456789abcdef");
-	ft_putstr_fd("0x", 1);
-	ft_putstr_fd(s, 1);
-	*str_len = *str_len + (2 + ft_strlen(s));
+	nbr = va_arg(ptr, unsigned long long int);
+	if (nbr == 0)
+	{
+		ft_putstr_fd("(nil)", 1);
+		*str_len = *str_len + ft_strlen("(nil)");
+	}
+	else
+	{
+		s = hex_p(nbr, "0123456789abcdef");
+		ft_putstr_fd("0x", 1);
+		ft_putstr_fd(s, 1);
+		*str_len = *str_len + (2 + ft_strlen(s));
+		free(s);
+	}
 }
